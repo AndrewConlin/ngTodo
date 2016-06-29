@@ -25,7 +25,6 @@ app.factory("todoService", function(){
   };
 
   var editTodo = function(editTodo){
-    console.log('in edit');
     todos.forEach(function(todo, index){
       if(todo.id === editTodo.id){
         todos[index] = editTodo;
