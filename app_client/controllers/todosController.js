@@ -1,13 +1,32 @@
-app.controller('todosController', function($scope, todoService){
-    $scope.todos = todoService.getTodos();
+app.controller('todosController', function($scope, todoDataService){
+    $scope.todos = [];
 
-    $scope.addTodo =  function(todo){
-      $scope.task = "";
-      todoService.createTodos(todo);
+    $scope.loadData = function(){
+      todoDataService.getTodos()
+        .then(function(response){
+          $scope.todos = response.data;
+      });
     };
-    $scope.deleteTodo =  todoService.deleteTodo;
+    $scope.loadData();
 
-    $scope.editTodo =  todoService.editTodo;
+    $scope.addTodo =  function(task){
+      todoDataService.createTodo(task).then(function(response){
+          $scope.loadData();
+      });
+      $scope.task = "";
+    };
+
+    $scope.deleteTodo =  function(id){
+      todoDataService.deleteTodo(id).then(function(response){
+          $scope.loadData();
+      });
+    };
+
+    $scope.editTodo =  function(todo){
+      todoDataService.editTodo(todo).then(function(response){
+          $scope.loadData();
+      });
+    };
 
     $scope.numTasks = function(){
         var counter = 0;

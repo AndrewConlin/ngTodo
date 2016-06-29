@@ -1,5 +1,5 @@
 var Mongo = require('mongodb').MongoClient;
-ObjectId = require('mongodb').ObjectID;
+var ObjectId = require('mongodb').ObjectID;
 var dbURL = 'mongodb://localhost:27017/ngTodo';
 
 module.exports.index = function(req, res){

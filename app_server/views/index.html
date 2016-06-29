@@ -10,7 +10,7 @@
     <script src="directives/myFooter/myFooter.js"></script>
     <script src="directives/todoRow/todoRow.js"></script>
     <script src="filters/completedFilter.js"></script>
-    <script src="services/todoServices.js"></script>
+    <script src="services/todoDataService.js"></script>
   </head>
   <body ng-controller="todosController">
     <h2>ngTodo<span class="label h3" ng-class="(numTasks() > 3) ? 'label-warning': 'label-success'">{{numTasks()}}</span></h2>

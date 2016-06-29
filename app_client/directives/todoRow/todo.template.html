@@ -1,4 +1,4 @@
 <td>{{data.task}}</td>
-<td><input type="checkbox" ng-model="data.completed"/></td>
+<td><input type="checkbox" ng-change="edit(data)" ng-model="data.completed"/></td>
 <td><button class="btn btn-warning" ng-click="editform(data)">Edit</button></td>
-<td><button class="btn btn-danger" ng-click="delete(data)">Delete</button></td>
+<td><button class="btn btn-danger" ng-click="delete(data._id)">Delete</button></td>
