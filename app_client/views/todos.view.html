@@ -1,0 +1,23 @@
+<h2>ngTodo<span class="label h3" ng-class="(numTasks() > 3) ? 'label-warning': 'label-success'">{{numTasks()}}</span></h2>
+
+<input class="form-control" type="text" placeholder="Enter new Todo" ng-model="task"/>
+<button class="btn btn-success" ng-click="addTodo(task)">Add</button>
+
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Todo</th>
+    <th>Mark</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  <tr todo-row data="todo" delete = "deleteTodo" edit="editTodo" ng-repeat="todo in todos | orderBy:'task' | customTodoFilter:showComplete" ng-class="todo.completed ? 'complete' : 'incomplete'"></tr>
+</tbody>
+</table>
+
+<div id="editForm"></div>
+
+<input type="checkbox" ng-model="showComplete">Show completed tasks</input>
+
+<my-footer data = "todos"></my-footer>

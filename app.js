@@ -10,9 +10,12 @@ app.use(express.static(__dirname + '/app_client'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//api routes
+app.use('/todo', require('./app_api/routes/todoRoutes'));
+app.use('/user', require('./app_api/routes/userRoutes'));
+
 //app routes
-app.use('/', require('./app_server/routes/main'));
-app.use('/todos', require('./app_api/routes/todoRoutes'));
+app.use(require('./app_server/routes/main'));
 
 //custom 404
 app.use(function(req, res){

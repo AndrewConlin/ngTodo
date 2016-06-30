@@ -1,8 +1,11 @@
-app.factory("todoDataService", function($http){
+app.factory("todoDataService", function($http, authenticationService){
   var getTodos = function (){
     return $http({
         method : 'GET',
-        url : '/todos'
+        url : '/todo',
+        headers : {
+          'x-access-token' : authenticationService.getToken()
+        }
     });
   };
 
@@ -13,23 +16,33 @@ app.factory("todoDataService", function($http){
     };
     return $http({
         method : 'POST',
-        url : '/todos',
+        url : '/todo',
+        headers : {
+           'Content-Type': 'application/json',
+           'x-access-token' : authenticationService.getToken()
+         },
         data : todo
     });
   };
 
   var deleteTodo = function(id){
-    console.log('in delete service');
     return $http({
         method : 'DELETE',
-        url : '/todos/'+id
+        url : '/todo/'+id,
+        headers : {
+          'x-access-token' : authenticationService.getToken()
+        }
     });
   };
 
   var editTodo = function(todo){
     return $http({
         method : 'PUT',
-        url : '/todos/'+todo._id,
+        url : '/todo/'+todo._id,
+        headers : {
+           'Content-Type' : 'application/json',
+           'x-access-token' : authenticationService.getToken()
+        },
         data: todo
     });
   };
